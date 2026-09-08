@@ -24,7 +24,7 @@ Use the shared memory and the semaphore implementation used above.
 To address the readers writers problem, we need:
 1. multiple readers can read simultaneously
 2. only one writer can modify at a time
-3. readers cannot read while data is being modified
+3. readers cannot read while data is being modified.
 To ensure this, we use a read count(keeps track of readers, as the read count becomes zero, a writer can acquire the mutex for the data and no other reader or writer can access the data.
 But this leads to reader priority/wirter starvation; which means when writer is waiting for a reader to finish, other readers can also access the data leading the writer to never get the chance.
 To address this problem, we use a gate/turnstile mutex which keeps track of who came first in the queue and only that process can enter the critical section next; acting like a queue of sorts.
